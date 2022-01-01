@@ -1,0 +1,24 @@
+//https://practice.geeksforgeeks.org/problems/print-anagrams-together/1/
+
+
+class Solution{
+  public:
+    vector<vector<string> > Anagrams(vector<string>& strlist) {
+        //code here
+        unordered_map<string,vector<string>> m;
+        for(int i=0;i<strlist.size();i++){
+            string s=strlist[i];
+            sort(s.begin(),s.end());
+            m[s].push_back(strlist[i]);
+        }
+        vector<vector<string>> v;
+        for(auto &vec:m){
+            vector<string> ans;
+            for(auto &elem:vec.second){
+                ans.push_back(elem);
+            }
+            v.push_back(ans);
+        }
+        return v;
+    }
+};
