@@ -1,0 +1,20 @@
+//  https://practice.geeksforgeeks.org/problems/run-length-encoding/1/
+
+//CODE
+string encode(string src)
+{     
+  string s;
+  int ct=1;
+  char pc=src[0];
+  for(int i=1;i<src.size();i++){
+      if(src[i]==pc)    ct++;
+      else{
+          s+=pc;
+          s+=to_string(ct);
+          pc=src[i];    ct=1;
+      }
+  }
+  s+=pc;
+  s+=to_string(ct);
+  return s;
+}
