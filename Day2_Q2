@@ -1,0 +1,23 @@
+//  https://practice.geeksforgeeks.org/problems/ugly-numbers2254/1/#
+
+//CODE
+class Solution{
+public:	
+	// #define ull unsigned long long
+	/* Function to get the nth ugly number*/
+	ull getNthUglyNo(int n) {
+	    ull dp[n+1];
+	    dp[1]=1;
+	    ull p2=1,p3=1,p5=1;
+	    for(int i=2;i<=n;i++){
+	        if(dp[p2]*2==dp[i-1])   p2++;
+	        if(dp[p3]*3==dp[i-1])   p3++;
+	        if(dp[p5]*5==dp[i-1])  p5++;
+	        dp[i]=min({dp[p2]*2,dp[p3]*3,dp[p5]*5});
+	        if(dp[i]==dp[p2]*2) p2++;
+	        else if(dp[i]==dp[p3]*3) p3++;
+	        else if(dp[i]==dp[p5]*5) p5++;
+	    }
+	    return dp[n];
+	}
+};
