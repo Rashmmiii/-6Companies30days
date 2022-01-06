@@ -1,0 +1,42 @@
+//  https://practice.geeksforgeeks.org/problems/decode-the-string2444/1
+
+class Solution{
+public:
+    string decodedString(string s){
+        stack<string> st;
+        stack<int>  no;
+        string res;
+        int i=0;
+        while(i<s.size()){
+            if(s[i]>='0' && s[i]<='9'){
+                int n=0;
+                while(s[i]>='0' && s[i]<='9'){
+                    n=n*10+s[i]-'0';
+                    i++;
+                }
+                no.push(n);
+            }
+            else if(s[i]=='['){
+                st.push(res);
+                res="";
+                i++;
+            }
+            else if(s[i]==']'){
+                string tmp=st.top();
+                int x=no.top();
+                while(x--){
+                    tmp+=res;
+                }
+                no.pop();
+                st.pop();
+                res=tmp;
+                i++;
+            }
+            else{
+                res.push_back(s[i]);
+                i++;
+            }
+        }
+        return res;
+    }
+};
