@@ -15,6 +15,7 @@ public:
             if(arr[j]!=j+1){
                 ans[0]=arr[j];
                 ans[1]=j+1;
+                break;
             }
         }
         return ans;
